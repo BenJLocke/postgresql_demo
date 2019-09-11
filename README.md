@@ -1,6 +1,36 @@
 # Getting Started
+Before starting the service, Please create a postgresql database 'test' on your local PC and setting user 'test' with password 123456.
+Please create the table customer.
+```
+CREATE TABLE public.customer
+(
+    id bigserial,
+    first_name character varying(100),
+    last_name character varying(100),
+    PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+);
 
-### Reference Documentation
+ALTER TABLE public.customer
+    OWNER to test;
+```
+
+## Build and run the project
+```
+$ mvn clean install
+$ java -jar target/postgresql_demo-0.0.1-SNAPSHOT.jar 
+```
+
+
+After start the demo, please visit:
+* http://localhost:8090/greeting
+* http://localhost:8090/customer/all
+* http://localhost:8090/customer/add?firstName=first&lastName=last
+* http://localhost:8090/customer/lastName?lastName=last
+
+## Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -16,7 +46,7 @@ For further reference, please consider the following sections:
 * [Spring cache abstraction](https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-caching)
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#production-ready)
 
-### Guides
+## Guides
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
